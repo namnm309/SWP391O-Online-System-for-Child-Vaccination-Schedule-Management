@@ -22,7 +22,8 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [, setToken] = useStorage<string|null>("token", null);
+  const [_, setToken] = useStorage<string | null>("token", null);
+
 
   const router = useRouter();
 
@@ -39,9 +40,8 @@ export function LoginForm({
     setLoading(true);
     try {
       const response = await authLogin(data);
-      console.log(response);
-      const userData = response;
-      setToken(userData.result.token);
+      
+      setToken(response.result.token);
 
       router.push("/");
       toast({

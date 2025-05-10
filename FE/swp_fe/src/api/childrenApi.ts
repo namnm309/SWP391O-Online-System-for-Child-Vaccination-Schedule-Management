@@ -5,15 +5,19 @@ export const getMyChildren = async () => {
   const response = await apiClient.get(`/user/my-children`);
   return response.data;
 };
-export const getMyChildrenId = async (id: string) => {
+export const getMyChildrenId = async (id: number) => {
   const response = await apiClient.get(`/user/child/${id}`);
   return response.data;
 };
-export const getMyChildrenHistoryId = async (id: string) => {
-  const response = await apiClient.get(`user/history/${id}`);
+export const getMyChildHistoryId = async (id: number) => {
+  const response = await apiClient.get(`user/history`, {
+    params: {
+      childId: id,
+    },
+  });
   return response.data;
 };
-export const getMyChildrenUpcomingId = async (id: string) => {
+export const getMyChildrenUpcomingId = async (id: number) => {
   const response = await apiClient.get(`user/upcoming/${id}`);
   return response.data;
 };
@@ -24,5 +28,10 @@ export const postMyChildren = async (data: Children) => {
 
 export const putMyChildren = async (id: number, data: Children) => {
   const response = await apiClient.put(`/user/children/${id}/update`, data);
+  return response.data;
+};
+
+export const upcomingVaccine = async (id: number) => {
+  const response = await apiClient.get(`/user/upcoming/${id}`, );
   return response.data;
 };

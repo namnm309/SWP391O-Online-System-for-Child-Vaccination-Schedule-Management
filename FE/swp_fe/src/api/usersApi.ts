@@ -2,7 +2,7 @@
 import { FormDataCreateUser, User, VerifyUser } from "@/lib/users";
 import apiClient from "./api";
 export const getMyInfo = async () => {
-  const response = await apiClient.get(`/user/myInfo`);
+  const response = await apiClient.get(`/user/me`);
   return response.data;
 };
 

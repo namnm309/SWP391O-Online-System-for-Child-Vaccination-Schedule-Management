@@ -88,7 +88,7 @@ function NotificationCard({ notification }:{notification: Notification}) {
             <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
               <span className="flex items-center">
                 <Calendar className="mr-1 h-3 w-3" />
-                {notification.createdAt}
+                {new Date(notification.createdAt).toLocaleString()}
               </span> 
             </div>
           </div>
@@ -98,7 +98,7 @@ function NotificationCard({ notification }:{notification: Notification}) {
       <CardContent className="p-4 pt-2">
         <p className="text-gray-600">{notification.message}</p>
       </CardContent>
-      <CardFooter className="flex justify-between p-4 pt-0">
+      {/* <CardFooter className="flex justify-between p-4 pt-0">
         <Button variant="link" className="h-8 px-0 text-blue-600">
           Xem chi tiết
         </Button>
@@ -107,7 +107,7 @@ function NotificationCard({ notification }:{notification: Notification}) {
             Đánh dấu đã đọc
           </Button>
         )}
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }

@@ -1,12 +1,11 @@
 "use client";
-import { getMyChildren } from "@/api/childrenApi";
-import { createChild } from "@/api/usersApi";
-import { ChildProfileCard } from "@/components/child-profile-card";
-import { Children } from "@/lib/children";
+import { createChild, getMyInfo } from "@/api/usersApi";
+import { ChildInfoCard } from "@/components/ChildInfoCard";
+import { Child } from "@/type/user";
 import { useCallback, useEffect, useState } from "react";
 
 export default function ChildrenList() {
-  const [children, setChildren] = useState<Children[]>([]);
+  const [children, setChildren] = useState<Child[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newChild, setNewChild] = useState({
     name: "",
@@ -20,8 +19,8 @@ export default function ChildrenList() {
 
   const fetchChildren = useCallback(async () => {
     try {
-      const response = await getMyChildren();
-      setChildren(response);
+      const response = await getMyInfo();
+      setChildren(response.children);
     } catch (error) {
       console.error(error);
     }
@@ -60,18 +59,12 @@ export default function ChildrenList() {
 
   return (
     <>
-      <div className="min-h-screen mx-auto px-4 sm:px-6 max-w-7xl lg:px-8 mt-4">
+      <div className="min-h-screen w-full mx-auto mt-4">
         <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Danh sách trẻ em
-            </h1>
-            <div className="flex items-center gap-2 mt-2">
-              <div className="h-1 w-20 rounded bg-gradient-to-r from-blue-400 to-purple-400" />
-              <p className="text-gray-600">Tổng số: {children.length} trẻ</p>
-            </div>
+          <div className="container w-full flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-bold">Hồ sơ con cái</h1>
             <button
-              className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+              className="px-4 py-2 bg-blue-600 text-white rounded"
               onClick={() => setIsPopupOpen(true)}
             >
               Thêm trẻ em
@@ -79,11 +72,13 @@ export default function ChildrenList() {
           </div>
         </div>
 
-        <div className="grid gap-6">
-          {children.map((child) => (
-            <ChildProfileCard key={child.childId} {...child} />
-          ))}
-        </div>
+        {children.length > 0 && (
+          <div className="container w-full mx-auto grid gap-6 md:grid-cols-3">
+            {children.map((child) => (
+              <ChildInfoCard key={child.childId} child={child} />
+            ))}
+          </div>
+        )}
 
         {isPopupOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

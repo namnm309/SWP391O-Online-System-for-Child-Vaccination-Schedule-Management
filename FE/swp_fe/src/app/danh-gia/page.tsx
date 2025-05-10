@@ -43,7 +43,6 @@ export default function ServiceReviewPage() {
       // Simulate API call
       const postData = postfeedback({ rating, comment });
       postData.then((res) => {
-        console.log(res);
       });
 
       setIsSubmitted(true);

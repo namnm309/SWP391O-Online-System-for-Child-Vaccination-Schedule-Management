@@ -2,7 +2,8 @@ import { User } from "@/type/user"
 
 export interface Feedback {
   id: number
-  user: User
+  username: string,
+  fullname: string,
   rating: number
   comment: string
   staffReply: string

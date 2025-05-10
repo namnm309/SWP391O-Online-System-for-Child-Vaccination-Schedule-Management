@@ -28,33 +28,6 @@ export default function Posts({ posts }: PostCarouselProps) {
             ))}
           </div>
         </div>
-
-        {/* <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-          {posts.map((product) => (
-            <div
-              key={product.id}
-              className="group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white"
-            >
-              <img
-                alt={product.imageList[0]}
-                src={product.imageList[0]}
-                className="aspect-[3/4] w-full bg-gray-200 group-hover:opacity-75 sm:aspect-auto h-36"
-              />
-              <div className="flex flex-1 flex-col space-y-2 p-4">
-                <h3 className="text-sm font-medium text-gray-900">
-                  <Link href={`/post/${product.id}`}>
-                    <span aria-hidden="true" className="absolute inset-0" />
-                    {product.title}
-                  </Link>
-                </h3>
-                <p className="text-sm text-gray-500 line-clamp-2">
-                  {product.content}
-                </p>
-                <div className="flex flex-1 flex-col justify-end"></div>
-              </div>
-            </div>
-          ))}
-        </div> */}
       </div>
     </div>
   );

@@ -31,3 +31,20 @@ export interface Role {
   description: string
   permissions: Permission[]
 }
+
+export interface Child {
+  childId: number
+  fullname: string
+  birthDate: string
+  gender: string
+  height: number
+  weight: number
+  relatives: Relative[]
+  avatarUrl: string
+}
+
+export interface Relative {
+  relativeId: number
+  fullname: string
+  relationshipType: string
+}

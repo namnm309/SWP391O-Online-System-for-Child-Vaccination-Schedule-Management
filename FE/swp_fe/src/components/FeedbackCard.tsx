@@ -14,7 +14,7 @@ export function FeedbackCard({ feedback }: FeedbackCardProps) {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <div className="font-semibold">{feedback.user.fullname}</div>
+          <div className="font-semibold">{feedback.fullname}</div>
           <div className="flex items-center">
             {Array.from({ length: 5 }).map((_, i) => (
               <StarIcon

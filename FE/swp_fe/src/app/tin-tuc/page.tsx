@@ -1,29 +1,31 @@
 "use client"
 import { useCallback, useEffect, useState } from "react"
-import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { getPosts } from "@/api/postApi"
 import { Post } from "@/type/post"
 import { formatDate } from "@/utils/format"
 
+
 export default function PostsPage() {
 
+  const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
+
   
-    const fetchPosts = useCallback(async () => {
-      try {
-        const response = await getPosts();
-        setPosts(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }, []);
-    
-    useEffect(() => {
-      fetchPosts();
-    }, [fetchPosts]);
+  const fetchPosts = useCallback(async () => {
+    try {
+      const response = await getPosts();
+      setPosts(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+  
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   return (
       <main className="flex-1 mx-auto">
@@ -44,14 +46,14 @@ export default function PostsPage() {
             <h2 className="text-2xl font-bold tracking-tight mb-8">Tin Tức Nổi Bật</h2>
             <div className="grid gap-6 lg:grid-cols-4">
               {posts.map((post) => (
-                <Card key={post.id} className="flex flex-col overflow-hidden">
+                <Card key={post.id} className="flex flex-col overflow-hidden hover:cursor-pointer" onClick={() => router.push(`/tin-tuc/${post.id}`)}>
                   <div className="aspect-video w-full overflow-hidden">
                     <Image
                       src={post.imageList[0] || "/placeholder.svg"}
                       alt={post.title}
                       width={600}
                       height={340}
-                      className="object-cover w-full h-full transition-transform hover:scale-105"
+                      className="object-cover w-full h-full transition-transform"
                     />
                   </div>
                   <CardHeader>
@@ -64,13 +66,13 @@ export default function PostsPage() {
                     <div className="flex items-center gap-2 mb-2">
                       <CardDescription>{formatDate(post.createdAt)}</CardDescription>
                     </div>
-                    <Button
+                    {/* <Button
                       variant="ghost"
                       asChild
                       className="p-0 h-auto font-medium text-primary flex items-center gap-1 hover:gap-2 transition-all"
                     >
                       <Link href={`/tin-tuc/${post.id}`}>Đọc tiếp</Link>
-                    </Button>
+                    </Button> */}
                   </CardFooter>
                 </Card>
               ))}

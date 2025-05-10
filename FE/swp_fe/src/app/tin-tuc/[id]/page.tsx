@@ -22,14 +22,13 @@ export default function PostId() {
       console.error(error);
     }
   }, [id]);
-  console.log(product);
 
   useEffect(() => {
     fetchProduct();
   }, [fetchProduct]);
 
   return (
-    <div className="min-h-screen mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="container min-h-screen mx-auto px-4 py-10 sm:px-6 lg:max-w-7xl lg:px-8">
       <main className="container mx-auto px-4 py-6">
         {/* Breadcrumb */}
         <nav className="mb-6 flex text-sm text-gray-600">
@@ -74,6 +73,10 @@ export default function PostId() {
               {product && product[0]?.content}
             </p>
 
+            <p className="mb-4 text-gray-600 italic">
+              {product && product[0]?.content}
+            </p>
+
             <div className="my-6">
               {product &&
                 product[0]?.imageList.map((image, index) => (
@@ -94,15 +97,6 @@ export default function PostId() {
           </div>
 
           {/* Social Share */}
-          <div className="mt-6 flex items-center gap-4 border-t pt-6">
-            <span className="text-sm text-gray-500">Chia sẻ:</span>
-            <Button variant="outline" size="icon">
-              <Facebook className="h-4 w-4 text-blue-600" />
-            </Button>
-            <Button variant="outline" size="icon">
-              <Twitter className="h-4 w-4 text-blue-400" />
-            </Button>
-          </div>
         </article>
 
         <Posts posts={[]} />

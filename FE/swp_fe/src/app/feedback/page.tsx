@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getfeedback } from "@/api/feedback";
-import { Feedback } from "@/lib/feedback";
+import { Feedback } from "@/type/feedback";
 
 export default function ReviewListPage() {
   const [reviews, setReviews] = useState<Feedback[]>([]);
@@ -49,7 +49,7 @@ export default function ReviewListPage() {
       if (
         searchTerm &&
         !review.comment.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        !review.user.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+        !review. fullname.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return false;
       }
@@ -100,7 +100,7 @@ export default function ReviewListPage() {
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
-                  <Avatar>
+                  {/* <Avatar>
                     <AvatarImage
                       src={
                         review.user.avatarUrl ||
@@ -111,9 +111,9 @@ export default function ReviewListPage() {
                     <AvatarFallback>
                       {review.user.fullname.charAt(0)}
                     </AvatarFallback>
-                  </Avatar>
+                  </Avatar> */}
                   <div>
-                    <h3 className="font-medium">{review.user.fullname}</h3>
+                    <h3 className="font-medium">{review.fullname}</h3>
                     <div className="mt-1 flex items-center gap-2">
                       <div className="flex">
                         {[1, 2, 3, 4, 5].map((star) => (
